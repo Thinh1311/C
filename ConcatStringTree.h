@@ -2,22 +2,20 @@
 #define __CONCAT_STRING_TREE_H__
 
 #include "main.h"
-class BST{
+class Node{
 public:
     string data;
-    BST *left, *right;
-    int leftLength() {
-       return left->data.length();
+    Node *left, *right;
+    int length =0;
+    int leftlength=0;
+    size_t getLeftlength(){
+        return left->data.length();
     }
-    BST(const char *string1) {}
-
 };
 
 class ConcatStringTree {
 public:
-    BST cur;
-    BST * Left = nullptr;
-    BST * Right = nullptr;
+    Node * root = new Node();
 public:
     ConcatStringTree(const char *s);
     int length() const;

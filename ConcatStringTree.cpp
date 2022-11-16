@@ -1,14 +1,30 @@
 #include "ConcatStringTree.h"
 
 ConcatStringTree::ConcatStringTree(const char *s) {
-
+    root->data=s;
+    root->right = root->left = nullptr;
+    root->leftlength=0;
+    root->length= root->getLeftlength();
 }
 
-int ConcatStringTree::length() const {}
+int ConcatStringTree::length() const {
+    return root->getLeftlength();
+}
 
-char ConcatStringTree::get(int index) {}
+char ConcatStringTree::get(int index) {
+    if (index<0 || index> length()) {
+        throw std::out_of_range("Index of string is invalid!");
+    }
+    return root->data[index];
+}
 
-int ConcatStringTree::indexOf(char c) {}
+int ConcatStringTree::indexOf(char c) {
+    for (int i = 0; i < root->data[i]; i++)
+    {
+        if (c == root->data[i]) return i;
+    }
+    return -1;
+}
 
 string ConcatStringTree::toStringPreOrder() const {}
 
