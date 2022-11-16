@@ -4,11 +4,17 @@ ConcatStringTree::ConcatStringTree(const char *s) {
     root->data=s;
     root->right = root->left = nullptr;
     root->leftlength=0;
-    root->length= root->getLeftlength();
+    root->length = root->data.length();
 }
 
 int ConcatStringTree::length() const {
-    return root->getLeftlength();
+    if(root==NULL)  return 0;
+    else if(root->left == nullptr && root->right == nullptr){
+        return root->data.length();
+    }
+    else{
+        return root->getLength();
+    }
 }
 
 char ConcatStringTree::get(int index) {

@@ -6,10 +6,10 @@ class Node{
 public:
     string data;
     Node *left, *right;
-    int length =0;
-    int leftlength=0;
-    size_t getLeftlength(){
-        return left->data.length();
+    int length;
+    int leftlength;
+    size_t getLength(){
+        return left->data.length() + right->data.length();
     }
 };
 
