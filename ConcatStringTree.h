@@ -7,15 +7,12 @@ public:
     string data;
     Node *left, *right;
     int length;
-    int leftlength;
-    size_t getLength(){
-        return left->data.length() + right->data.length();
-    }
+    int leftlength; // key is leftlength
 };
 
 class ConcatStringTree {
 public:
-    Node * root = new Node();
+    Node * root;
 public:
     ConcatStringTree(const char *s);
     int length() const;
@@ -29,6 +26,7 @@ public:
 
     int getParTreeSize(const string & query) const;
     string getParTreeStringPreOrder(const string & query) const;
+    ~ConcatStringTree();
 };
 
 class ReducedConcatStringTree; // forward declaration
