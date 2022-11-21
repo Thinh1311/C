@@ -1,29 +1,38 @@
 #include "ConcatStringTree.h"
 
-// helper function
-int getLeftLength(Node * root){
-    if(root->left!=NULL)
-            return 0;
-    else{
-        return root->left->data.length();
-    }
+
+//ConcatStringTree *ConcatStringTree::insert(ConcatStringTree *root, const char *s) {
+//    if(!root){      // neu root rong thi tao concatstringtree moi
+//        return new ConcatStringTree(s);
+//    }
+//    if(strlen(s) > root->Length){
+//        root->right = insert(root->right,s);
+//    }
+//    else if(strlen(s) < root->Length){
+//        root->left = insert(root->left,s);
+//    }
+//    return root;
+//}
+//
+//ConcatStringTree *ConcatStringTree::concatHelpFunction(const ConcatStringTree *root,const ConcatStringTree *others) const{
+//    if(!root){
+//        return others;
+//    }
+//    if(!others){
+//        return root;
+//    }
+//    root->data+=others->data;
+//    root->left = concatHelpFunction(root->left,others->left);
+//    root->right = concatHelpFunction(root->right,others->right);
+//}
+
+ConcatStringTree::ConcatStringTree(const char*s) {
+    string str(s);
+    root->data = str;
+    root->left=root->right = nullptr;
+    root->length = str.length();
+    root->leftLength=0;
 }
-
-int getLength(Node *root){
-     if(!root)   
-        return 0;
-    return root->data.length();
-}
-//// 
-
-
-ConcatStringTree::ConcatStringTree(const char *s) {
-    root->data=s;
-    root->right = root->left = nullptr;
-    root->length = getLength(root);
-    root->leftlength = getLeftLength(root);
-}
-
 int ConcatStringTree::length() const {
     return root->length;
 }
@@ -32,54 +41,29 @@ char ConcatStringTree::get(int index) {
     if (index<0 || index> length()) {
         throw std::out_of_range("Index of string is invalid!");
     }
-    return root->data[index];
 }
 
 int ConcatStringTree::indexOf(char c) {
-    for (int i = 0; i < length(); i++)
-    {
-        if (c == root->data[i]) return i;
-    }
-    return -1;
+//    for (int i = 0; i < length(); i++)
+//    {
+//        if (c == this->data[i]) return i;
+//    }
+//    return -1;
 }
 
 string ConcatStringTree::toStringPreOrder() const {
-//    string out="";
-//    int LL  = root->getleftlength(); // left length
-//    int L =  root->getLength(); // return length
-//    int LR = root->right->data.length();
-//    if(root!=NULL){
-//        return "ConcatStringTree[(LL=0,L=0,<NULL>);(LL=0,L=0,<NULL>);(LL=0,L=0,<NULL>)]\"";
-//    }
-//    else{
-//    }
-//    return out;
+
 }
 
 string ConcatStringTree::toString() const {
-    string out1="ConcatStringTree[\"";
-    string out2="\"]\"";
-    if(root->left == NULL && root->right==NULL){
-        return out1 + "NULL" + out2;
-    }
-    else if(root->left != NULL && root->right==NULL)
-    {
-        return out1 + root->left->data + out2;
-    }
-    else if(root->left == NULL && root->right!=NULL)
-    {
-        return out1 + root->right->data + out2;
-    }
-    else{
-        return out1 + root->left->data + root->right->data + out2;
-    }
+//    string a = "ConcatStringTree";
+//    string b = this->data;
+//    return a + "[\""+ b + "\"]";
 }
 
-ConcatStringTree ConcatStringTree::concat(const ConcatStringTree &otherS) const {
-    string out = "";
-
+ConcatStringTree ConcatStringTree::concat(const ConcatStringTree &otherS) const{
+//    return concatHelpFunction(root,otherS);
 }
-
 ConcatStringTree ConcatStringTree::subString(int from, int to) const {}
 
 ConcatStringTree ConcatStringTree::reverse() const {}

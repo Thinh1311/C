@@ -2,18 +2,27 @@
 #define __CONCAT_STRING_TREE_H__
 
 #include "main.h"
+
 class Node{
 public:
     string data;
-    Node *left, *right;
+    Node *left,*right;
+    int leftLength;
     int length;
-    int leftlength; // key is leftlength
+    friend class ConcatStringTree;
+public:
+    Node(): left(nullptr), right(nullptr){}
+    Node(Node *left,Node *right) : left(left) ,right(right){}
+    ~Node(){}
 };
 
+
 class ConcatStringTree {
+private:
+    Node *root = new Node();
 public:
-    Node * root;
-public:
+//    ConcatStringTree *insert(ConcatStringTree*root,const char *s); // helper function for concat
+//    ConcatStringTree *concatHelpFunction(const ConcatStringTree *root,const ConcatStringTree *others) const; // helper function for concat
     ConcatStringTree(const char *s);
     int length() const;
     char get(int index);
@@ -30,6 +39,7 @@ public:
 };
 
 class ReducedConcatStringTree; // forward declaration
+class LitStringHash; // forward declaration
 
 class HashConfig {
 private:
@@ -40,20 +50,20 @@ private:
     int initSize;
 
     friend class ReducedConcatStringTree;
+    friend class LitStringHash;
+};
+
+class LitStringHash {
+public:
+    LitStringHash(const HashConfig & hashConfig);
+    int getLastInsertedIndex() const;
+    string toString() const;
 };
 
 class ReducedConcatStringTree /* */ {
-
 public:
-    class LitStringHash {
-    public:
-        LitStringHash(const HashConfig & hashConfig);
-        int getLastInsertedIndex() const;
-        string toString() const;
-    };
-
-public:
-    static LitStringHash litStringHash;
+    ReducedConcatStringTree(const char * s, LitStringHash * litStringHash);
+    LitStringHash * litStringHash;
 };
 
 #endif // __CONCAT_STRING_TREE_H__
