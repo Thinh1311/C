@@ -1,36 +1,19 @@
 #include "ConcatStringTree.h"
 
 
-//ConcatStringTree *ConcatStringTree::insert(ConcatStringTree *root, const char *s) {
-//    if(!root){      // neu root rong thi tao concatstringtree moi
-//        return new ConcatStringTree(s);
-//    }
-//    if(strlen(s) > root->Length){
-//        root->right = insert(root->right,s);
-//    }
-//    else if(strlen(s) < root->Length){
-//        root->left = insert(root->left,s);
-//    }
-//    return root;
-//}
-//
-//ConcatStringTree *ConcatStringTree::concatHelpFunction(const ConcatStringTree *root,const ConcatStringTree *others) const{
-//    if(!root){
-//        return others;
-//    }
-//    if(!others){
-//        return root;
-//    }
-//    root->data+=others->data;
-//    root->left = concatHelpFunction(root->left,others->left);
-//    root->right = concatHelpFunction(root->right,others->right);
-//}
+ConcatStringTree *ConcatStringTree::concatHelpFunction(Node *left, Node *right) {
+    root->left=left;
+    root->right=right;
+    root->leftLength=left->length;
+    root->length=left->length+right->length;
+    root->data.clear(); /// clear data do ham nay nay chi noi thoi
+}
 
 ConcatStringTree::ConcatStringTree(const char*s) {
     string str(s);
-    root->data = str;
-    root->left=root->right = nullptr;
-    root->length = str.length();
+    root->data=str;
+    root->left=root->right= nullptr;
+    root->length=str.length();
     root->leftLength=0;
 }
 int ConcatStringTree::length() const {
@@ -41,6 +24,7 @@ char ConcatStringTree::get(int index) {
     if (index<0 || index> length()) {
         throw std::out_of_range("Index of string is invalid!");
     }
+//    string
 }
 
 int ConcatStringTree::indexOf(char c) {
@@ -55,10 +39,20 @@ string ConcatStringTree::toStringPreOrder() const {
 
 }
 
+
+string HelpToString(Node *root){
+    if(root)
+    {
+        if(root->data !=""){
+            return root->data;
+        }
+        return HelpToString(root->left) + HelpToString(root->right);
+    }
+    return "";
+}
 string ConcatStringTree::toString() const {
-//    string a = "ConcatStringTree";
-//    string b = this->data;
-//    return a + "[\""+ b + "\"]";
+    string s1 = "ConcatStringTree";
+    return s1 + "[\"" + HelpToString(root) + "\"]";
 }
 
 ConcatStringTree ConcatStringTree::concat(const ConcatStringTree &otherS) const{
